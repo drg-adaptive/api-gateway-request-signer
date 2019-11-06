@@ -29,5 +29,10 @@
     "prepare": "tsc",
     "semantic-release": "semantic-release",
     "test": "echo \"TODO: Write some 🐞 tests...\""
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
