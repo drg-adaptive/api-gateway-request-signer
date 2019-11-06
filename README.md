@@ -1,4 +1,6 @@
 # api-gateway-request-signer
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdrg-adaptive%2Fapi-gateway-request-signer.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdrg-adaptive%2Fapi-gateway-request-signer?ref=badge_shield)
+
 Sign requests to IAM authorized API Gateway APIs
 
 ## Usage
@@ -26,3 +28,7 @@ Finally you're ready to actually make the request.
 ```typescript
 const result = await axios.get(request.url, {headers: request.headers});
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdrg-adaptive%2Fapi-gateway-request-signer.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdrg-adaptive%2Fapi-gateway-request-signer?ref=badge_large)
