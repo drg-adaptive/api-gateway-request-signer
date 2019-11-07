@@ -1,11 +1,10 @@
 // Taken from https://github.com/AnomalyInnovations/sigV4Client and converted to typescript
 // For an example of the original library, see https://serverless-stack.com/chapters/connect-to-api-gateway-with-iam-auth.html
 
-import SHA256 from "crypto-js/sha256";
-import encHex from "crypto-js/enc-hex";
-import HmacSHA256 from "crypto-js/hmac-sha256";
-import { LibWordArray } from "crypto-js";
+import { LibWordArray, SHA256, HmacSHA256, enc } from "crypto-js";
 import * as AWS from "aws-sdk";
+
+const encHex = enc.Hex;
 
 export interface RequestSignerConfig {
   accessKey?: string;
