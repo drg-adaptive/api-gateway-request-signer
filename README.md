@@ -1,4 +1,7 @@
-# api-gateway-request-signer
+# API Gateway Request Signer
+[![Build Status](https://travis-ci.org/drg-adaptive/api-gateway-request-signer.svg)](https://travis-ci.org/drg-adaptive/api-gateway-request-signer)
+[![Maintainability](https://api.codeclimate.com/v1/badges/006339522a8624e9bacb/maintainability)](https://codeclimate.com/github/drg-adaptive/api-gateway-request-signer/maintainability)
+[![npm version](https://badge.fury.io/js/api-gateway-request-signer.svg)](https://badge.fury.io/js/api-gateway-request-signer)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdrg-adaptive%2Fapi-gateway-request-signer.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdrg-adaptive%2Fapi-gateway-request-signer?ref=badge_shield)
 
 Sign requests to IAM authorized API Gateway APIs
