@@ -22,7 +22,7 @@ export enum HttpMethods {
   POST = "POST"
 }
 
-interface RequestToSign {
+export interface RequestToSign {
   method: HttpMethods;
   path: string;
   queryParams?: any;
