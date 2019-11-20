@@ -8,7 +8,9 @@
   "author": "Ben Force <bforce@dresources.com>",
   "license": "MIT",
   "dependencies": {
-    "crypto-js": "^3.1.9-1"
+    "crypto-js": "^3.1.9-1",
+    "delay": "^4.3.0",
+    "faker": "^4.1.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.5",
@@ -17,6 +19,7 @@
     "@semantic-release/npm": "^5.3.4",
     "@semantic-release/release-notes-generator": "^7.3.2",
     "@types/crypto-js": "^3.1.43",
+    "@types/faker": "^4.1.7",
     "@types/node": "^12.12.6",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
