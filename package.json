@@ -8,7 +8,6 @@
   "author": "Ben Force <bforce@dresources.com>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.564.0",
     "crypto-js": "^3.1.9-1"
   },
   "devDependencies": {
