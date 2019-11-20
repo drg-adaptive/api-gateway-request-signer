@@ -2,6 +2,8 @@
 // For an example of the original library, see https://serverless-stack.com/chapters/connect-to-api-gateway-with-iam-auth.html
 
 import { LibWordArray, SHA256, HmacSHA256, enc } from "crypto-js";
+import delay from "delay";
+import { random } from "faker";
 
 const encHex = enc.Hex;
 
@@ -27,6 +29,11 @@ export interface RequestToSign {
   queryParams?: any;
   headers?: any;
   body?: any;
+}
+
+export interface SignedRequestData {
+  headers: any;
+  url: string;
 }
 
 const AWS_SHA_256 = "AWS4-HMAC-SHA256";
@@ -255,7 +262,7 @@ export default class RequestSigner {
     }
   }
 
-  signRequest(request: RequestToSign) {
+  signRequest(request: RequestToSign): SignedRequestData {
     const verb = request.method.toUpperCase();
     const path = this.pathComponent + request.path;
     const queryParams = { ...request.queryParams };
@@ -343,5 +350,27 @@ export default class RequestSigner {
       headers: headers,
       url: url
     };
+  }
+
+  async makeRequestWithRetries(
+    request: RequestToSign,
+    callback: (signedRequest: SignedRequestData) => Promise<any>,
+    maxTries: number = 5
+  ) {
+    for (let n = 0; n < maxTries; n++) {
+      try {
+        console.info("Sigining request");
+        const dataRequest = this.signRequest(request);
+
+        const data = await callback(dataRequest);
+
+        return data;
+      } catch (ex) {
+        console.error(ex);
+        await delay(
+          (2 ** n + random.float({ min: 0, max: 1, precision: 5 })) * 1000
+        );
+      }
+    }
   }
 }
