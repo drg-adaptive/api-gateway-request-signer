@@ -2,7 +2,6 @@
 // For an example of the original library, see https://serverless-stack.com/chapters/connect-to-api-gateway-with-iam-auth.html
 
 import { LibWordArray, SHA256, HmacSHA256, enc } from "crypto-js";
-import * as AWS from "aws-sdk";
 
 const encHex = enc.Hex;
 
@@ -43,9 +42,9 @@ const addDefaultConfigValues = (
 ): RequestSignerConfig => ({
   ...config,
   ...(!(config.accessKey || config.secretKey || config.sessionToken) && {
-    accessKey: AWS.config.credentials.accessKeyId,
-    secretKey: AWS.config.credentials.secretAccessKey,
-    sessionToken: AWS.config.credentials.sessionToken
+    accessKey: process.env.AWS_ACCESS_KEY_ID,
+    secretKey: process.env.AWS_SECRET_ACCESS_KEY,
+    sessionToken: process.env.AWS_SESSION_TOKEN
   })
 });
 
@@ -245,11 +244,7 @@ export default class RequestSigner {
     this.secretKey = config.secretKey;
     this.sessionToken = config.sessionToken;
     this.serviceName = config.serviceName || "execute-api";
-    this.region =
-      config.region ||
-      AWS.config.region ||
-      process.env.AWS_REGION ||
-      "us-east-1";
+    this.region = config.region || process.env.AWS_REGION || "us-east-1";
     this.defaultAcceptType = config.defaultAcceptType || "application/json";
     this.defaultContentType = config.defaultContentType || "application/json";
     this.endpoint = /(^https?:\/\/[^/]+)/g.exec(invokeUrl)[1];
