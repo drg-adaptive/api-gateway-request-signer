@@ -1,11 +1,12 @@
 // Taken from https://github.com/AnomalyInnovations/sigV4Client and converted to typescript
 // For an example of the original library, see https://serverless-stack.com/chapters/connect-to-api-gateway-with-iam-auth.html
 
-import { LibWordArray, SHA256, HmacSHA256, enc } from "crypto-js";
-import delay from "delay";
-import { random } from "faker";
+import { LibWordArray } from "crypto-js";
+import encHex from "crypto-js/enc-hex";
+import SHA256 from "crypto-js/sha256";
+import HmacSHA256 from "crypto-js/hmac-sha256";
 
-const encHex = enc.Hex;
+import delay from "delay";
 
 export interface RequestSignerConfig {
   accessKey?: string;
@@ -367,9 +368,7 @@ export default class RequestSigner {
         return data;
       } catch (ex) {
         console.error(ex);
-        await delay(
-          (2 ** n + random.float({ min: 0, max: 1, precision: 5 })) * 1000
-        );
+        await delay((2 ** n + Math.random()) * 1000);
       }
     }
   }

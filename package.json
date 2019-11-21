@@ -7,11 +7,7 @@
   "repository": "https://github.com/drg-adaptive/api-gateway-request-signer",
   "author": "Ben Force <bforce@dresources.com>",
   "license": "MIT",
-  "dependencies": {
-    "crypto-js": "^3.1.9-1",
-    "delay": "^4.3.0",
-    "faker": "^4.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.5",
     "@semantic-release/commit-analyzer": "^6.3.2",
@@ -19,16 +15,21 @@
     "@semantic-release/npm": "^5.3.4",
     "@semantic-release/release-notes-generator": "^7.3.2",
     "@types/crypto-js": "^3.1.43",
-    "@types/faker": "^4.1.7",
     "@types/node": "^12.12.6",
     "commitizen": "^4.0.3",
+    "crypto-js": "^3.1.9-1",
     "cz-conventional-changelog": "^3.0.2",
+    "delay": "^4.3.0",
+    "rollup": "^1.27.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.25.2",
     "semantic-release": "^15.13.30",
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "build": "tsc",
-    "prepare": "tsc",
+    "build": "yarn rollup -c",
+    "prepare": "yarn build",
     "semantic-release": "semantic-release",
     "test": "echo \"TODO: Write some 🐞 tests...\""
   },
