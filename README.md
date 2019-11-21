@@ -35,7 +35,30 @@ Finally you're ready to actually make the request.
 const result = await axios.get(request.url, { headers: request.headers });
 ```
 
-### Credendtials
+### Making Requests with Exponential Backoff
+
+The `ApiGatewaySigner` has a convenience method called `makeRequestWithRetries`.
+Simply provide it with the same parameters as `signRequest` and a callback and it
+will take care of automatically retrying requests.
+
+```typescript
+const data = await apiSigner.makeRequestWithRetries(
+  {
+    method: HttpMethods.GET,
+    path: `/path/to/some/resource`
+  },
+  request => axios.get(request.url, { headers: request.headers }),
+  3 // Number of times to retry the request
+);
+```
+
+The method calls your callback with the signed request. If the callback throws an
+exception, then it is called again after a short delay.
+
+The last parameter is optional, and it determines the number of times to retry
+the request. By default it's set to `5`.
+
+### Credentials
 
 To sign your request the library requires a set of credentials. You can provide
 these credentials as part of the initial config, or in environment variables.
@@ -61,7 +84,7 @@ const apiSigner = new ApiGatewaySigner({
 
 If values aren't provided in the constructor, the values of the `AWS_ACCESS_KEY_ID`,
 `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN` environment variables will be
-used. These values will be populated by default in a lambda runtime envrionment.
+used. These values will be populated by default in a lambda runtime environment.
 
 See [Lambda Environment Variables](https://docs.aws.amazon.com/lambda/latest/dg/lambda-environment-variables.html) for more information.
 
